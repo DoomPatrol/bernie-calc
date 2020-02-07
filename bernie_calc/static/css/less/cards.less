@@ -1,0 +1,192 @@
+// main: main.less
+
+@media screen and (max-width: 40em) {
+
+  &.four, &.three, &.six, &.eight, &.twelve {
+    flex: 0 1 calc(100%);
+  }
+
+  &.mobile-six {
+    flex: 0 1 calc(50% - 20px);
+  }
+
+}
+
+@media screen and (min-width: 40em) {
+  &.three {
+    flex: 0 1 calc(25% - 20px);
+  }
+
+  &.four {
+    flex: 0 1 calc(33% - 20px);
+  }
+
+  &.six {
+    flex: 0 1 calc(50% - 20px);
+  }
+
+  &.eight {
+    flex: 0 1 calc(66% - 20px);
+  }
+
+  &.twelve {
+    flex: 0 1 calc(100%);
+  }
+}
+
+.bernie-card-wrapper{
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bernie-card {
+
+
+  background-color: @white;
+  border: 1px solid fade(@black, 30%);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: @black;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  &.hover-animation {
+    &:hover {
+      box-shadow: 0 0 30px rgba(28, 39, 60, 0.08);
+      border: 1px solid transparent;
+      // box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
+      transition: all 0.4s ease-in-out;
+      background-color: @main;
+      color: @white;
+      cursor: pointer;
+    }
+  }
+
+  .image-container {
+    position: relative;
+
+    &.custom-svg {
+      svg{
+      height: 100%;
+      min-height: 50px;
+      padding: 5%;
+      }
+    }
+
+    &.with-bg {
+      background: linear-gradient(90deg, #a6ebd6 20px, transparent 1%) center,
+      linear-gradient(#a6ebd6 20px, transparent 1%) center, #fff;
+    background-size: 22px 22px;
+    }
+  }
+  &:hover {
+
+    .bernie-card-hover {
+      opacity: 1;
+    }
+  }
+
+  .button-row {
+    margin-left: 0; 
+    margin-right: 0; 
+    transition: all 0.2s ease-in-out;
+  }
+
+  .bernie-card-inner {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .bernie-card-description{
+    text-align: left;
+  }
+
+  .bernie-card-img {
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .bernie-card-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: @black;
+    letter-spacing: .2px;
+
+    &.large {
+      font-size: 1.75rem;
+    }
+  }
+
+  svg {
+    max-height: 150px;
+    max-width: 100%;
+    padding-bottom: 20px;
+  }
+
+  .blurb {
+    font-size: .75rem;
+  }
+  .bernie-card-data {
+    font-size: 32px;
+    font-weight: 400;
+    margin-top: auto;
+  }
+
+  .bernie-card-data-left {
+    font-size: 3rem;
+    margin-bottom: .25rem;
+  }
+
+  .bernie-card-data-explainer {
+    font-size: .75rem;
+    color: @gray;
+  }
+
+  .bernie-card-data-small {
+    font-size: 1.5rem;
+    color: @gray;
+  }
+
+  .bernie-card-bottom {
+    border-top: 1px solid fade(@black, 30%);
+    margin-top: auto;
+
+    &.no-border {
+      border-top: none;
+    }
+
+    .bernie-card-bottom-title {
+      font-size: .875rem;
+      font-weight: 400;
+      color: @black;
+      &.white {
+        color: @white;
+      }
+    }
+
+    .bernie-card-bottom-data {
+      font-size: 1.3125rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .bernie-card-bottom-inner {
+      padding-top: .5rem;
+    }
+
+    .bernie-card-bottom-left {
+      border-right: 3px dotted @gray-lighter;
+    }
+  }
+   @media (max-width: 767.98px) {
+    .button-row{
+      opacity: 1;
+    }
+  }
+}

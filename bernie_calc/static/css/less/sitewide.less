@@ -1,0 +1,86 @@
+// main: main.less
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; 
+  .body-wrapper {
+    min-height: 90vh;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;  
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.extra-spacing {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.distribute-equally {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.hero {
+
+  .img-wrap {
+
+    margin: 2%;
+    position: relative;
+    padding: 1rem;
+    min-height: 33vh;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: all ease-in-out .5s;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: all ease-in-out .5s;
+    }
+  }
+
+  .img-filter{
+    background-color: @secondary;
+    img{
+      mix-blend-mode: multiply;
+     -webkit-filter: grayscale(100%) contrast(1);
+     filter: grayscale(100%) contrast(.8);
+       width: 100%;
+   }
+      &::after{
+        background-color: @secondary;
+        mix-blend-mode: lighten;
+      }
+  }
+  
+  
+}
+
+.angle-svg {
+  fill: @secondary;
+  width: 100%;
+  height: 10vh;
+}
+footer {
+  background-color: @secondary;
+  color: @white;
+
+  .footer-padding {
+    padding: 3%;
+  }
+}

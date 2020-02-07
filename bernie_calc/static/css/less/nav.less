@@ -1,0 +1,24 @@
+// main: main.less
+
+.bernie-nav {
+  font-weight: 700;
+
+  .nav-link {
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+  }
+
+  a {
+    color: @black;
+    border-bottom: 3px solid transparent;
+    box-shadow: none;
+    transition: all .3s;
+
+    &:hover {
+      color: lighten(@black, 10%);
+      border-bottom: 3px solid @secondary;
+      background: transparent;
+    }
+  }
+
+}

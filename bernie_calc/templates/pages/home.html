@@ -1,1 +1,34 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid hero extra-spacing" style="padding: 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+          <h1 style="font-size: 3rem;">Bernie Calc</h1>
+          <p>Simple calculators to see how Bernie's policies affect you.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="bernie-card-wrapper">
+          <div class="bernie-card six hover-animation">
+            <div class="bernie-card-inner text-center">
+              <h3>Healthcare Calculator</h3>
+            </div>
+          </div>
+          <div class="bernie-card six hover-animation">
+            <div class="bernie-card-inner text-center">
+                <h3>Student Loans</h3>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
