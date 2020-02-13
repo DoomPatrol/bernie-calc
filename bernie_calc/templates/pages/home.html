@@ -4,17 +4,21 @@
 
 
 {% block content %}
-<div class="container-fluid hero extra-spacing" style="padding: 0;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-          <h1 style="font-size: 3rem;">Bernie Calc</h1>
-          <p>Simple calculators to see how Bernie's policies affect you.</p>
+<div class="container-fluid hero mb-3" style="padding: 0;background-image: url({% static 'images/bernie-bg.jpg' %});">
+  <div class="hero-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h1>Bernie Calc</h1>
+            <p>A super simple calculator to help you understand Bernie's policies.</p>
+        </div>
       </div>
-    </div>
   </div>
 </div>
-<div class="container">
+
+  
+</div>
+<div class="container extra-spacing">
   <div class="row">
     <div class="col-md-10 offset-md-1">
         <form class="form-horizontal" method="post">

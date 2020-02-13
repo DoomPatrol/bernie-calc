@@ -32,26 +32,26 @@ class BernieCalcForm(forms.Form):
         HTML("""
             <div class="col-12"><h3>Finances</h3></div>
         """),
-        Column('total_yearly_income', css_class='form-group col-md-6'),
-        Column('tax_filing_status', css_class='form-group col-md-6'),
+        Column('total_yearly_income', css_class='form-group col-md-6 col-12 mb-0'),
+        Column('tax_filing_status', css_class='form-group col-md-6 col-12 mb-0'),
         css_class='form-row'
       ),
       Row(
         HTML("""
             <div class="col-12"><h3>Healthcare</h3></div>
         """),
-        Column('healthcare_monthly_premium', css_class='form-group col-md-4'),
-        Column('yearly_healthcare_spending', css_class='form-group col-md-4'),
-        Column('medical_debt', css_class='form-group col-md-4'),
+        Column('healthcare_monthly_premium', css_class='form-group col-md-4 col-12 mb-0'),
+        Column('yearly_healthcare_spending', css_class='form-group col-md-4 col-12 mb-0'),
+        Column('medical_debt', css_class='form-group col-md-4 col-12 mb-0'),
         css_class='form-row'
       ),
       Row(
         HTML("""
             <div class="col-12"><h3>Childcare & Debt</h3></div>
         """),
-        Column('childcare_monthly_spending', css_class='form-group col-md-4'),
-        Column('current_student_loans', css_class='form-group col-md-4'),
-        Column('credit_card_debt', css_class='form-group col-md-4'),
+        Column('childcare_monthly_spending', css_class='form-group col-md-4 col-12 mb-0'),
+        Column('current_student_loans', css_class='form-group col-md-4 col-12 mb-0'),
+        Column('credit_card_debt', css_class='form-group col-md-4 col-12 mb-0'),
         css_class='form-row'
       ),
     )

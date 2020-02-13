@@ -25,7 +25,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+.logo {
+  max-height: 30px;
+}
+
 .hero {
+  width: 100%;
+  height: 250px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: @white;
+  -webkit-clip-path: polygon(0 0, 1600px 0, 1600px 65%, 0 100%);
+  clip-path: polygon(0 0, 1600px 0, 1600px 65%, 0 100%);
+
+  .hero-padding {
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
 
   .img-wrap {
 
@@ -36,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0;
 
-    img {
+    .hero-img-fill {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -56,15 +74,22 @@ h1, h2, h3, h4, h5, h6 {
 
   .img-filter{
     background-color: @secondary;
-    img{
-      mix-blend-mode: multiply;
+    .hero-img-fill {
+      background-blend-mode: multiply;
      -webkit-filter: grayscale(100%) contrast(1);
      filter: grayscale(100%) contrast(.8);
        width: 100%;
+       height: 250px;
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-position: center;
+       background-size: cover;
+      color: @white;
+
    }
       &::after{
         background-color: @secondary;
-        mix-blend-mode: lighten;
+        background-blend-mode: lighten;
       }
   }
   
