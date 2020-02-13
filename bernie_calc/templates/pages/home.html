@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
+
 
 {% block content %}
 <div class="container-fluid hero extra-spacing" style="padding: 0;">
@@ -15,18 +17,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1">
-        <div class="bernie-card-wrapper">
-          <div class="bernie-card six hover-animation">
-            <div class="bernie-card-inner text-center">
-              <h3>Healthcare Calculator</h3>
-            </div>
-          </div>
-          <div class="bernie-card six hover-animation">
-            <div class="bernie-card-inner text-center">
-                <h3>Student Loans</h3>
-            </div>
-          </div>
-        </div>
+        <form class="form-horizontal" method="post">
+          {% csrf_token %}
+          {% crispy form %}
+          <button type="submit" class="btn secondary-button">See Your Results <i class="typcn typcn-arrow-right-outline"></i></button>
+        </form>
     </div>
   </div>
 </div>
