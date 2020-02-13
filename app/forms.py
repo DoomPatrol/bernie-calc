@@ -55,3 +55,5 @@ class BernieCalcForm(forms.Form):
         css_class='form-row'
       ),
     )
+    self.helper.add_input(Submit('submit', 'See Your Results', css_class='btn secondary-button'))
+    self.helper.form_method = 'POST'
