@@ -8,7 +8,6 @@ TAX_FILING_CHOICES = (
   ('married_jointly', _('Married Filing Jointly')),
   ('married_separately', _('Married Filing Seperately')),
   ('head_of_household', _('Head of Household')),
-  ('widower', _('Qualified Widower')),
 )
 
 
@@ -18,7 +17,7 @@ class BernieCalcForm(forms.Form):
   tax_filing_status = forms.ChoiceField(help_text=_('Your tax filing status (helps us calculate taxes more accurately)'), choices=TAX_FILING_CHOICES, initial='single')
   healthcare_monthly_premium = forms.IntegerField(help_text=_('Your current healthcare monthly premiums'), min_value=0, max_value=1000000, initial=250)
   yearly_healthcare_spending = forms.IntegerField(help_text=_('How much do you spend per year on healthcare on top of your monthly premium. Think deductibles, medicine costs, etc.'), min_value=0, max_value=1000000, initial=2000)
-  medical_debt = forms.IntegerField(help_text=_('How much do you currently have in student loans'), min_value=0, max_value=1000000, initial=0)
+  medical_debt = forms.IntegerField(help_text=_('How much do you currently have in medical debt'), min_value=0, max_value=1000000, initial=0)
   childcare_monthly_spending = forms.IntegerField(help_text=_('How much do you spend per month on child care costs'), min_value=0, max_value=1000000, initial=0)
   current_student_loans = forms.IntegerField(help_text=_('How much do you currently have in student loans'), min_value=0, max_value=1000000, initial=0)
   credit_card_debt = forms.IntegerField(help_text=_('How much do you currently have in credit card debt'), min_value=0, max_value=1000000, initial=0)

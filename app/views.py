@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from app.forms import BernieCalcForm
 from django.views.decorators.http import require_http_methods
+from app.taxes import get_taxes
 
 # Create your views here.
 
@@ -24,7 +25,7 @@ class CalculatorResultsView(View):
   def post(self, request):
 
     context_dict = {}
-    print(request.POST)
+    context_dict['tax_breakdown'] = get_taxes(int(request.POST.get('total_yearly_income')), request.POST.get('tax_filing_status'))
 
     return render(request, self.template_name, context_dict)
 
