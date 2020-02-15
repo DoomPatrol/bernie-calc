@@ -25,7 +25,7 @@ class CalculatorResultsView(View):
   def post(self, request):
 
     context_dict = {}
-    context_dict['tax_breakdown'] = get_taxes(int(request.POST.get('total_yearly_income')), request.POST.get('tax_filing_status'))
+    context_dict['tax_breakdown'] = get_taxes(int(request.POST.get('total_yearly_income')), request.POST.get('include_standard_deduction'), request.POST.get('tax_filing_status'))
 
     return render(request, self.template_name, context_dict)
 

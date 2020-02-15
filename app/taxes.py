@@ -40,47 +40,65 @@ HEAD_OF_HOUSEHOLD_TAX_BRACKETS = [
 ]
 
 
-def get_taxes(income, filing_status):
+def get_taxes(income, standard_deduction, filing_status):
+
+  if standard_deduction and (filing_status == 'single' or filing_status == 'married_separately'):
+    standard_deduction = 12400
+    taxable_income = round(income - standard_deduction)
+  elif standard_deduction and filing_status == 'married_jointly':
+    standard_deduction = 24800
+    taxable_income = round(income - standard_deduction)
+  elif standard_deduction and filing_status == 'head_of_household':
+    standard_deduction = 18650
+    taxable_income = round(income - standard_deduction)
+  else:
+    standard_deduction = 0
+    taxable_income = income
 
   if filing_status == 'single':
-    return calculate_tax_breakdown(income, SINGLE_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, SINGLE_TAX_BRACKETS)
   
   elif filing_status == 'married_jointly':
-    return calculate_tax_breakdown(income, MARRIED_FILING_JOINTLY_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, MARRIED_FILING_JOINTLY_TAX_BRACKETS)
   
   elif filing_status == 'married_separately':
-    return calculate_tax_breakdown(income, MARRIED_FILING_SEPARATELY_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, MARRIED_FILING_SEPARATELY_TAX_BRACKETS)
   
   else:
-    return calculate_tax_breakdown(income, HEAD_OF_HOUSEHOLD_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, HEAD_OF_HOUSEHOLD_TAX_BRACKETS)
 
-def calculate_tax_breakdown(income, tax_brackets):
+def calculate_tax_breakdown(taxable_income, standard_deduction, tax_brackets):
   # Set up the items we need to then calculate on
   tax_breakdown_dict = {}
   tax_breakdown_dict['breakdown'] = []
+  tax_breakdown_dict['taxable_income'] = taxable_income
+  tax_breakdown_dict['standard_deduction'] = standard_deduction
   tax_breakdown_dict['total_taxes'] = 0
   break_loop = False
 
   for bracket in tax_brackets:
-    if bracket['max'] and income > bracket['max']:
+    if bracket['max'] and taxable_income > bracket['max']:
       # just get the max for this rate 
-      tax = round(bracket['max'] * bracket['tax_rate'], 2)
+      dollar_amount_to_tax = round(bracket['max'] - bracket['min'])
+      tax = round(dollar_amount_to_tax * bracket['tax_rate'])
 
-    elif bracket['max'] is None or bracket['min'] <= income <= bracket['max']:
+    elif bracket['max'] is None or bracket['min'] <= taxable_income <= bracket['max']:
       # falls between the max and min or is exactly the max
 
       # first we need to see how much we need to tax
-      dollar_amount_to_tax = round(income - bracket['min'], 2)
-      tax = round(dollar_amount_to_tax * bracket['tax_rate'], 2)
+      dollar_amount_to_tax = round(taxable_income - bracket['min'])
+      tax = round(dollar_amount_to_tax * bracket['tax_rate'])
       break_loop = True
       
     
     tax_breakdown_dict['breakdown'].append({
       'tax_level': '%s%%' % round(bracket['tax_rate'] * 100), 
-      'taxes_paid': tax, 
+      'amount_taxed_at_level': dollar_amount_to_tax,
+      'taxes_paid': tax,
       'max': bracket['max'], 
       'min': bracket['min']
       })
+
     tax_breakdown_dict['total_taxes'] += tax
     
     # break loop if you no longer need to calculate
