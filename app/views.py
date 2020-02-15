@@ -5,7 +5,9 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from app.forms import BernieCalcForm
 from django.views.decorators.http import require_http_methods
+
 from app.taxes import get_taxes
+from app.income import calculate_income_difference
 
 # Create your views here.
 
@@ -25,7 +27,11 @@ class CalculatorResultsView(View):
   def post(self, request):
 
     context_dict = {}
-    context_dict['current_taxes'] = get_taxes(int(request.POST.get('total_yearly_income')), request.POST.get('include_standard_deduction'), int(request.POST.get('number_of_children')), request.POST.get('tax_filing_status'))
+    yearly_income = int(request.POST.get('total_yearly_income'))
+    context_dict['current_taxes'] = get_taxes(yearly_income, request.POST.get('include_standard_deduction'), int(request.POST.get('number_of_children')), request.POST.get('tax_filing_status'), False)
+    context_dict['medicare_for_all_taxes'] = get_taxes(yearly_income, request.POST.get('include_standard_deduction'), int(request.POST.get('number_of_children')), request.POST.get('tax_filing_status'), True)
+    context_dict['income_difference'] = calculate_income_difference(yearly_income, int(request.POST.get('healthcare_monthly_premium')), int(request.POST.get('yearly_healthcare_spending')), context_dict['current_taxes'], context_dict['medicare_for_all_taxes'])
+  
     return render(request, self.template_name, context_dict)
 
 

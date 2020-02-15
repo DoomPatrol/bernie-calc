@@ -18,7 +18,7 @@ class BernieCalcForm(forms.Form):
   include_standard_deduction = forms.BooleanField(required=False, help_text=_('Include the standard deduction in the calculation (recommended)'), initial=True)
   number_of_children = forms.IntegerField(help_text=_('Number of children in your household'), min_value=0, max_value=50, initial=0)
   healthcare_monthly_premium = forms.IntegerField(help_text=_('Your current healthcare monthly premiums'), min_value=0, max_value=1000000, initial=250)
-  yearly_healthcare_spending = forms.IntegerField(help_text=_('How much do you spend per year on healthcare on top of your monthly premium. Think deductibles, medicine costs, etc.'), min_value=0, max_value=1000000, initial=2000)
+  yearly_healthcare_spending = forms.IntegerField(help_text=_('How much do you spend per year on healthcare on top of your monthly premium. Think deductibles, perscription costs, bills not covered by insurance, etc.'), min_value=0, max_value=1000000, initial=2000)
   medical_debt = forms.IntegerField(help_text=_('How much do you currently have in medical debt'), min_value=0, max_value=1000000, initial=0)
   childcare_monthly_spending = forms.IntegerField(help_text=_('How much do you spend per month on child care costs'), min_value=0, max_value=1000000, initial=0)
   current_student_loans = forms.IntegerField(help_text=_('How much do you currently have in student loans'), min_value=0, max_value=1000000, initial=0)
