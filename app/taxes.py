@@ -40,7 +40,7 @@ HEAD_OF_HOUSEHOLD_TAX_BRACKETS = [
 ]
 
 
-def get_taxes(income, standard_deduction, filing_status):
+def get_taxes(income, standard_deduction, number_of_children, filing_status):
 
   if standard_deduction and (filing_status == 'single' or filing_status == 'married_separately'):
     standard_deduction = 12400
@@ -54,24 +54,28 @@ def get_taxes(income, standard_deduction, filing_status):
   else:
     standard_deduction = 0
     taxable_income = income
+  
+  child_tax_credit = round(number_of_children * 2000)
+  taxable_income = round(taxable_income - child_tax_credit)
 
   if filing_status == 'single':
-    return calculate_tax_breakdown(taxable_income, standard_deduction, SINGLE_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, child_tax_credit, SINGLE_TAX_BRACKETS)
   
   elif filing_status == 'married_jointly':
-    return calculate_tax_breakdown(taxable_income, standard_deduction, MARRIED_FILING_JOINTLY_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, child_tax_credit, MARRIED_FILING_JOINTLY_TAX_BRACKETS)
   
   elif filing_status == 'married_separately':
-    return calculate_tax_breakdown(taxable_income, standard_deduction, MARRIED_FILING_SEPARATELY_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, child_tax_credit, MARRIED_FILING_SEPARATELY_TAX_BRACKETS)
   
   else:
-    return calculate_tax_breakdown(taxable_income, standard_deduction, HEAD_OF_HOUSEHOLD_TAX_BRACKETS)
+    return calculate_tax_breakdown(taxable_income, standard_deduction, child_tax_credit, HEAD_OF_HOUSEHOLD_TAX_BRACKETS)
 
-def calculate_tax_breakdown(taxable_income, standard_deduction, tax_brackets):
+def calculate_tax_breakdown(taxable_income, standard_deduction, child_tax_credit, tax_brackets):
   # Set up the items we need to then calculate on
   tax_breakdown_dict = {}
   tax_breakdown_dict['breakdown'] = []
   tax_breakdown_dict['taxable_income'] = taxable_income
+  tax_breakdown_dict['child_tax_credit'] = child_tax_credit
   tax_breakdown_dict['standard_deduction'] = standard_deduction
   tax_breakdown_dict['total_taxes'] = 0
   break_loop = False
