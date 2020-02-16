@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
+{% load bernie_tags %}
 {% load crispy_forms_tags %}
 
 
@@ -8,15 +10,56 @@
   <div class="hero-padding">
     <div class="container">
       <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <h1>Results</h1>
-            {{current_taxes}}
-
-            {{medicare_for_all_taxes}}
-
-            {{income_difference}}
+        <div class="col-md-12">
+            <h1>Your Results</h1>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Healthcare</h3>
+    </div>
+    <div class="bernie-card-wrapper">
+      <div class="bernie-card four">
+        <div class="bernie-card-inner">
+          <p class="bernie-card-data">${{income_difference.yearly_total_healthcare_spending|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
+          <h3 class="bernie-card-title">Current Healthcare spending</h3>
+          <p class="bernie-card-data-explainer">How much you are currently spending every year between your monthly premium and
+            extra spending on deductibles, perscriptions, and bills
+          </p>
+        </div>
+      </div>
+      <div class="bernie-card four">
+        <div class="bernie-card-inner">
+          <p class="bernie-card-data">${{medicare_for_all_taxes.breakdown.medicare_for_all_tax|intcomma}} <span class="bernie-card-data-explainer">in taxes</span></p>
+          <h3 class="bernie-card-title">Medicare for all healthcare cost</h3>
+          <p class="bernie-card-data-explainer">How much medicare for all will cost you. This cost is calculated by adding a 4% tax onto
+            your yearly taxable income, outlined in 
+            <a href="https://www.sanders.senate.gov/download/options-to-finance-medicare-for-all?inline=file" target="_blank">this document</a>.
+          </p>
+        </div>
+      </div>
+      <div class="bernie-card four">
+        <div class="bernie-card-inner">
+          <p class="bernie-card-data">${{income_difference.income_difference|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
+          <h3 class="bernie-card-title">How much {% if income_difference.income_difference > 0 %}less{% else %}more{% endif %} this will cost you</h3>
+          <p class="bernie-card-data-explainer">
+            Based on our calculations the medicare for all plan will cost you ${{income_difference.income_difference|intcomma|abs}}
+            {% if income_difference.income_difference > 0 %}less{% else %}more{% endif %} than what you currently spend on healthcare.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Income & tax Breakdown</h3>
+      <p>Let's break these numbers down further</p>
     </div>
   </div>
 </div>

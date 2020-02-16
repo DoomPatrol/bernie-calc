@@ -95,7 +95,6 @@ def calculate_tax_breakdown(taxable_income, tax_brackets, include_medicare_for_a
 
     elif bracket['max'] is None or bracket['min'] <= taxable_income <= bracket['max']:
       # falls between the max and min or is exactly the max
-
       # first we need to see how much we need to tax
       dollar_amount_to_tax = round(taxable_income - bracket['min'])
       tax = round(dollar_amount_to_tax * bracket['tax_rate'])
