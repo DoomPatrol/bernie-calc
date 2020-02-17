@@ -88,7 +88,14 @@ def calculate_tax_breakdown(taxable_income, tax_brackets, include_medicare_for_a
   break_loop = False
 
   for bracket in tax_brackets:
-    if bracket['max'] and taxable_income > bracket['max']:
+
+    # if no taxable income there won't be any taxes (free)
+    if taxable_income <= 0:
+      dollar_amount_to_tax = 0
+      tax = 0
+      break
+  
+    elif bracket['max'] and taxable_income > bracket['max']:
       # just get the max for this rate 
       dollar_amount_to_tax = round(bracket['max'] - bracket['min'])
       tax = round(dollar_amount_to_tax * bracket['tax_rate'])
@@ -115,8 +122,11 @@ def calculate_tax_breakdown(taxable_income, tax_brackets, include_medicare_for_a
     # this is a bit redundant for top tax brackets but allows us to shorten code
     if break_loop:
       break
-    
-  if include_medicare_for_all:
+  
+  if include_medicare_for_all and taxable_income <= 0:
+    tax_breakdown_dict['medicare_for_all_tax'] = 0
+    tax_breakdown_dict['total_taxes'] = 0
+  elif include_medicare_for_all:
     tax_breakdown_dict['medicare_for_all_tax'] = round(taxable_income * .04)
     tax_breakdown_dict['total_taxes'] = round(tax_breakdown_dict['total_taxes'] + tax_breakdown_dict['medicare_for_all_tax'])
   
