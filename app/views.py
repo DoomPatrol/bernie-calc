@@ -61,7 +61,7 @@ class CalculatorResultsView(View):
       we want to calculate overall difference & healthcare difference
       Overall factors in no longer having student loans or healthcare debt
       '''
-    total_healthcare_spending = round(round(int(request.POST.get('healthcare_monthly_premium')) * 12) + int(request.POST.get('yearly_healthcare_spending')))
+    total_healthcare_spending = round(round(int(request.POST.get('health_care_monthly_premium')) * 12) + int(request.POST.get('yearly_health_care_spending')))
     context_dict['total_yearly_spending'] = round(total_healthcare_spending + context_dict['medical_debt_payoff'] + context_dict['student_loans_payoff'], 2)
     context_dict['total_monthly_spending'] = round(context_dict['total_yearly_spending'] / 12, 2)
     context_dict['overall_difference'] = calculate_overall_difference(yearly_income, context_dict['total_yearly_spending'], context_dict['current_taxes'], context_dict['bernie_taxes'])

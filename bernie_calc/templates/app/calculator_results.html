@@ -28,7 +28,7 @@
           <p class="bernie-card-data">${{overall_difference.current_monthly_income_after_spending_and_taxes|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per month</span></p>
           <h3 class="bernie-card-title">Our estimate of your current monthly income</h3>
           <p class="bernie-card-data-explainer">This is calculated by calculating your current tax burden and deducting your estimated monthly expenses for
-            student loans, healthcare, and medical debt. Please note it is just an estimate and can fluctuate based on specific tax circumstances.
+            student loans, health care, and medical debt. Please note it is just an estimate and can fluctuate based on specific tax circumstances.
           </p>
         </div>
       </div>
@@ -66,8 +66,8 @@
             and to <a href="https://berniesanders.com/issues/free-college-cancel-debt/" target="_blank">cancel student loan debt</a>.
           </p>
           <p class="bernie-card-data-explainer">
-            This tax increase means that everyone has healthcare. It also removes variable costs that you see on the first graph like
-            monthly premiums, healthcare spending, and unforseen medical bills that can happen under current insurance plans.
+            This tax increase means that everyone has health care. It also removes variable costs that you see on the first graph like
+            monthly premiums, health care spending, and unforseen medical bills that can happen under current insurance plans.
           </p>
         </div>
       </div>
@@ -78,16 +78,16 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Compare and Contrast</h3>
-      <p>Let's run through the exact numbers to see the exact cost of these programs. We break it out by {% if medical_debt > 0 or student_loans > 0 %}healthcare, taxes, and debt{% else %}healthcare and taxes{% endif %}.</p>
+      <p>Let's run through the exact numbers to see the exact cost of these programs. We break it out by {% if medical_debt > 0 or student_loans > 0 %}health care, taxes, and debt{% else %}health care and taxes{% endif %}.</p>
     </div>
     <div class="col-md-12">
-      <h4>Healthcare</h4>
+      <h4>Health Care</h4>
     </div>
     <div class="bernie-card-wrapper">
       <div class="bernie-card four">
         <div class="bernie-card-inner">
           <p class="bernie-card-data">${{healthcare_difference.yearly_total_healthcare_spending|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
-          <h3 class="bernie-card-title">Your Current Healthcare spending</h3>
+          <h3 class="bernie-card-title">Your Current Health Care spending</h3>
           <p class="bernie-card-data-explainer">How much you are currently spending every year between your monthly premium and
             extra spending on deductibles, perscriptions, and bills
           </p>
@@ -96,7 +96,7 @@
       <div class="bernie-card four">
         <div class="bernie-card-inner">
           <p class="bernie-card-data">${{bernie_taxes.breakdown.medicare_for_all_tax|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">in taxes per year</span></p>
-          <h3 class="bernie-card-title">Medicare for all healthcare cost</h3>
+          <h3 class="bernie-card-title">Medicare for all health care cost</h3>
           <p class="bernie-card-data-explainer">How much medicare for all could cost you. This cost is calculated by adding a 4% tax onto
             your yearly taxable income, outlined in 
             <a href="https://www.sanders.senate.gov/download/options-to-finance-medicare-for-all?inline=file" target="_blank">this document</a>.
@@ -112,7 +112,7 @@
           <h3 class="bernie-card-title">How much {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} this could cost you</h3>
           <p class="bernie-card-data-explainer">
             Based on our calculations the medicare for all plan would cost you ${{healthcare_difference.income_difference|floatformat:0|intcomma|abs}}
-            {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} than what you currently spend on healthcare.
+            {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} than what you currently spend on health care.
           </p>
         </div>
       </div>
