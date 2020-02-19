@@ -289,6 +289,3 @@ bernie_calc/media/
 .envs/*
 
 !.envs/.local/
-
-# production settings
-/config/settings/production.py
