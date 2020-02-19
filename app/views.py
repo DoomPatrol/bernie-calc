@@ -89,6 +89,4 @@ class CalculatorResultsView(View):
     
     context = super().get_context_data(**kwargs)
 
-    print(self.request.POST)
-
     return context
