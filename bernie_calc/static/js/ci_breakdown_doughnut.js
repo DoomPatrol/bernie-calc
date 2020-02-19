@@ -1,5 +1,4 @@
 let ci_data_obj = JSON.parse(document.getElementById('ci-income-doughnut-data').textContent);
-console.log(ci_data_obj)
 let ci_data = []
 let ci_labels = []
 

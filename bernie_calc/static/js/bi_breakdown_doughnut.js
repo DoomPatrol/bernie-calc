@@ -1,7 +1,6 @@
 let bi_data_obj = JSON.parse(document.getElementById('bi-income-doughnut-data').textContent);
 let bi_data = []
 let bi_labels = []
-console.log(bi_data);
 
 $(document).ready(function() {
 
