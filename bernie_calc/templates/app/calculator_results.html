@@ -20,7 +20,7 @@
 <div class="container extra-spacing">
   <div class="row">
     <div class="col-md-12">
-      <h3 style="font-size: 3rem;">Based on our calculations Bernie's plans could {% if overall_difference.monthly_difference > 0 %}save{% else%}cost{% endif %} you ${{overall_difference.monthly_difference|floatformat:0|intcomma}} per month.</h3>    
+      <h3 style="font-size: 3rem;">Based on our calculations Bernie's plans could {% if overall_difference.monthly_difference > 0 %}save{% else%}cost{% endif %} you ${{overall_difference.monthly_difference|floatformat:0|intcomma|abs}} per month.</h3>    
     </div>
     <div class="bernie-card-wrapper">
       <div class="bernie-card six">
