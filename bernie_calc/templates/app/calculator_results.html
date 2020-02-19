@@ -106,7 +106,7 @@
       <div class="bernie-card four">
         <div class="bernie-card-inner">
           <p class="bernie-card-data {% if healthcare_difference.income_difference > 0 %}positive{% else %}negative{% endif %}">
-              {% if healthcare_difference.income_difference > 0 %}<i class="typcn typcn-arrow-up-thick"></i>{% else %}<i class="typcn typcn-arrow-down-thick"></i>{% endif %}
+              {% if healthcare_difference.income_difference > 0 %}<i class="typcn typcn-arrow-down-thick"></i>{% else %}<i class="typcn typcn-arrow-up-thick"></i>{% endif %}
               ${{healthcare_difference.income_difference|floatformat:0|intcomma}} 
             <span class="bernie-card-data-explainer">per year</span></p>
           <h3 class="bernie-card-title">How much {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} this could cost you</h3>
@@ -142,7 +142,7 @@
       </div>
       <div class="bernie-card four">
         <div class="bernie-card-inner">
-          <p class="bernie-card-data negative"><i class="typcn typcn-arrow-down-thick"></i> ${{overall_difference.tax_difference|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
+          <p class="bernie-card-data negative"><i class="typcn typcn-arrow-up-thick"></i> ${{overall_difference.tax_difference|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
           <h3 class="bernie-card-title">How much {% if overall_difference.tax_difference > 0 %}more{% else %}less{% endif %} you could pay in taxes</h3>
           <p class="bernie-card-data-explainer">
             Based on our calculations your taxes could go {% if overall_difference.tax_difference > 0 %}up{% else %}down{% endif %} by 
