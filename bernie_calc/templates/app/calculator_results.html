@@ -20,7 +20,7 @@
 <div class="container extra-spacing">
   <div class="row">
     <div class="col-md-12">
-      <h3 style="font-size: 3rem;">Based on our calculations Bernie's plans will {% if overall_difference.monthly_difference > 0 %}save{% else%}cost{% endif %} you ${{overall_difference.monthly_difference|floatformat:0|intcomma}} per month.</h3>    
+      <h3 style="font-size: 3rem;">Based on our calculations Bernie's plans could {% if overall_difference.monthly_difference > 0 %}save{% else%}cost{% endif %} you ${{overall_difference.monthly_difference|floatformat:0|intcomma}} per month.</h3>    
     </div>
     <div class="bernie-card-wrapper">
       <div class="bernie-card six">
@@ -60,7 +60,7 @@
         <div class="bernie-card-inner">
           <h3 class="bernie-card-title">What are the differences?</h3>
           <p class="bernie-card-data-explainer">
-            The main difference you will see is that taxes go up by 4% to pay for medicare for all (before tax breaks). For you,
+            The main difference you see is that taxes go up by 4% to pay for medicare for all (before tax breaks) or if you are a very high earner. For you,
             your taxes would go up by <b>${{healthcare_difference.tax_difference|floatformat:0|intcomma}}</b> per year. You will also notice that your
             student and medical debt payments go back into your pocket through Bernie's plans to <a href="https://berniesanders.com/issues/eliminating-medical-debt/" target="_blank">elminate medical debt</a>
             and to <a href="https://berniesanders.com/issues/free-college-cancel-debt/" target="_blank">cancel student loan debt</a>.
@@ -78,7 +78,7 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Compare and Contrast</h3>
-      <p>Let's run through the exact numbers to see the exact cost of these programs. We break it out by healthcare, taxes, and debt.</p>
+      <p>Let's run through the exact numbers to see the exact cost of these programs. We break it out by {% if medical_debt > 0 or student_loans > 0 %}healthcare, taxes, and debt{% else %}healthcare and taxes{% endif %}.</p>
     </div>
     <div class="col-md-12">
       <h4>Healthcare</h4>
@@ -95,9 +95,9 @@
       </div>
       <div class="bernie-card four">
         <div class="bernie-card-inner">
-          <p class="bernie-card-data">${{medicare_for_all_taxes.breakdown.medicare_for_all_tax|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">in taxes</span></p>
+          <p class="bernie-card-data">${{bernie_taxes.breakdown.medicare_for_all_tax|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">in taxes per year</span></p>
           <h3 class="bernie-card-title">Medicare for all healthcare cost</h3>
-          <p class="bernie-card-data-explainer">How much medicare for all will cost you. This cost is calculated by adding a 4% tax onto
+          <p class="bernie-card-data-explainer">How much medicare for all could cost you. This cost is calculated by adding a 4% tax onto
             your yearly taxable income, outlined in 
             <a href="https://www.sanders.senate.gov/download/options-to-finance-medicare-for-all?inline=file" target="_blank">this document</a>.
           </p>
@@ -105,49 +105,89 @@
       </div>
       <div class="bernie-card four">
         <div class="bernie-card-inner">
-          <p class="bernie-card-data">${{healthcare_difference.income_difference|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
-          <h3 class="bernie-card-title">How much {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} this will cost you</h3>
+          <p class="bernie-card-data {% if healthcare_difference.income_difference > 0 %}positive{% else %}negative{% endif %}">
+              {% if healthcare_difference.income_difference > 0 %}<i class="typcn typcn-arrow-up-thick"></i>{% else %}<i class="typcn typcn-arrow-down-thick"></i>{% endif %}
+              ${{healthcare_difference.income_difference|floatformat:0|intcomma}} 
+            <span class="bernie-card-data-explainer">per year</span></p>
+          <h3 class="bernie-card-title">How much {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} this could cost you</h3>
           <p class="bernie-card-data-explainer">
-            Based on our calculations the medicare for all plan will cost you ${{healthcare_difference.income_difference|floatformat:0|intcomma|abs}}
+            Based on our calculations the medicare for all plan would cost you ${{healthcare_difference.income_difference|floatformat:0|intcomma|abs}}
             {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} than what you currently spend on healthcare.
           </p>
         </div>
       </div>
     </div>
     <div class="col-md-12">
-      <h4>Healthcare</h4>
+      <h4>Taxes</h4>
     </div>
     <div class="bernie-card-wrapper">
       <div class="bernie-card four">
         <div class="bernie-card-inner">
-          <p class="bernie-card-data">${{healthcare_difference.yearly_total_healthcare_spending|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
-          <h3 class="bernie-card-title">Your Current Healthcare spending</h3>
-          <p class="bernie-card-data-explainer">How much you are currently spending every year between your monthly premium and
-            extra spending on deductibles, perscriptions, and bills
+          <p class="bernie-card-data">${{current_taxes.breakdown.total_taxes|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
+          <h3 class="bernie-card-title">Estimated Current Taxes</h3>
+          <p class="bernie-card-data-explainer">How much we estimate your taxes to be after {% if form_data.include_standard_deduction %}the standard deduction and {% endif %}
+            the child tax credit.
           </p>
         </div>
       </div>
       <div class="bernie-card four">
         <div class="bernie-card-inner">
-          <p class="bernie-card-data">${{medicare_for_all_taxes.breakdown.medicare_for_all_tax|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">in taxes</span></p>
-          <h3 class="bernie-card-title">Medicare for all healthcare cost</h3>
-          <p class="bernie-card-data-explainer">How much medicare for all will cost you. This cost is calculated by adding a 4% tax onto
-            your yearly taxable income, outlined in 
-            <a href="https://www.sanders.senate.gov/download/options-to-finance-medicare-for-all?inline=file" target="_blank">this document</a>.
+          <p class="bernie-card-data">${{bernie_taxes.breakdown.total_taxes|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
+          <h3 class="bernie-card-title">Estimated Taxes Under Bernie</h3>
+          <p class="bernie-card-data-explainer">How much we estimate your taxes to be under Bernie after {% if form_data.include_standard_deduction %}the standard deduction and {% endif %}
+              the child tax credit. This figure in includes medicare for all and Bernie's
+              <a href="https://www.sanders.senate.gov/download/options-to-finance-medicare-for-all?inline=file">proposed changes to existing tax brackets</a>.
           </p>
         </div>
       </div>
       <div class="bernie-card four">
         <div class="bernie-card-inner">
-          <p class="bernie-card-data">${{healthcare_difference.income_difference|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
-          <h3 class="bernie-card-title">How much {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} this will cost you</h3>
+          <p class="bernie-card-data negative"><i class="typcn typcn-arrow-down-thick"></i> ${{overall_difference.tax_difference|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per year</span></p>
+          <h3 class="bernie-card-title">How much {% if overall_difference.tax_difference > 0 %}more{% else %}less{% endif %} you could pay in taxes</h3>
           <p class="bernie-card-data-explainer">
-            Based on our calculations the medicare for all plan will cost you ${{healthcare_difference.income_difference|floatformat:0|intcomma|abs}}
-            {% if healthcare_difference.income_difference > 0 %}less{% else %}more{% endif %} than what you currently spend on healthcare.
+            Based on our calculations your taxes could go {% if overall_difference.tax_difference > 0 %}up{% else %}down{% endif %} by 
+            ${{overall_difference.tax_difference|floatformat:0|intcomma|abs}} under Bernie's plans. This
+            {% if overall_difference.tax_difference > 0 %}increase{% else %}decrease{% endif %} includes medicare for all, plans to cancel student debt,
+            and eliminate medical debt.
           </p>
         </div>
       </div>
     </div>
+    {% if medical_debt > 0 or student_loans > 0 %}
+    <div class="col-md-12">
+      <h4>Debt</h4>
+      <p>See how not having medical or student loan payments could affect you. If our numbers look off, press back and edit the advanced settings
+        to change interest rate and time for a more accurate calculation.
+      </p>
+    </div>
+    <div class="bernie-card-wrapper">
+      <div class="bernie-card four">
+        <div class="bernie-card-inner">
+          <p class="bernie-card-data">${{debt.total_debt|floatformat:0|intcomma}} <span class="bernie-card-data-explainer"></span></p>
+          <h3 class="bernie-card-title">Current Total Debt</h3>
+          <p class="bernie-card-data-explainer">How much you currently have in student loans and medical debt.
+          </p>
+        </div>
+      </div>
+      <div class="bernie-card four">
+        <div class="bernie-card-inner">
+          <p class="bernie-card-data">${{debt.monthly_debt_payments|floatformat:0|intcomma}} <span class="bernie-card-data-explainer">per month</span></p>
+          <h3 class="bernie-card-title">Estimated Monthly Payments</h3>
+          <p class="bernie-card-data-explainer">How much we estimate you are paying towards medical and student debt per month.
+          </p>
+        </div>
+      </div>
+      <div class="bernie-card four">
+        <div class="bernie-card-inner">
+          <p class="bernie-card-data positive">$0 <span class="bernie-card-data-explainer">per month</span></p>
+          <h3 class="bernie-card-title">How much could pay under Bernie's plan</h3>
+          <p class="bernie-card-data-explainer">
+            Under Bernie's medical and student debt elimination plans, your monthly payments would go to $0
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
   </div>
 </div>
 <div class="container extra-spacing">
